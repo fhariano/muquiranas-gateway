@@ -32,7 +32,12 @@ class UserController extends Controller
 
     public function update(Request $request, $identify)
     {
-        return $this->userService->updateUserByUUID($identify, $request->all());
+        return $this->userService->updateUserByUUID($request->all(), $identify);
+    }
+
+    public function updateCellConfirmed(Request $request, $identify)
+    {
+        return $this->userService->updateCellConfirmed($request->all(), $identify);
     }
 
     public function destroy($identify)

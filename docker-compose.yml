@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 services:
   # image micro-gateway
   micro_gateway:
@@ -8,6 +8,8 @@ services:
         - uid=1000
       context: ./
       dockerfile: dockerfile
+    environment: 
+      TZ: "${TZ:-America/Sao_Paulo}"
     image: laravel-app
     restart: unless-stopped
     working_dir: /var/www/

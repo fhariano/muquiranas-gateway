@@ -10,6 +10,7 @@ $router->post('/register', 'Api\Auth\RegisterController@register');
 $router->post('/auth', 'Api\Auth\AuthController@auth');
 $router->post('/logout', 'Api\Auth\AuthController@logout');
 $router->get('/me', 'Api\Auth\AuthController@me');
+$router->put('/users/cell-confirmed/{identify}', 'Api\UserController@updateCellConfirmed');
 
 
 $router->group(['middleware' => 'auth_micro'], function () use ($router) {
@@ -25,8 +26,8 @@ $router->group(['middleware' => 'auth_micro'], function () use ($router) {
     $router->post('/users/permissions', 'Api\PermissionUserController@addPermissionUser');
     $router->delete('/users/permissions', 'Api\PermissionUserController@removePermissionUser');
     $router->get('/users', 'Api\UserController@index');
-    $router->get('/users/{id}', 'Api\UserController@show');
-    $router->put('/users/{id}', 'Api\UserController@update');
+    $router->get('/users/{identify}', 'Api\UserController@show');
+    $router->put('/users/{identify}', 'Api\UserController@update');
     $router->delete('/users/{identify}', 'Api\UserController@destroy');
 
     /**

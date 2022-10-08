@@ -63,9 +63,16 @@ class UserService
         return $this->defaultResponse->response($response);
     }
 
-    public function updateUserByUUID(string $identify = null, array $params = [])
+    public function updateUserByUUID(array $params = [], string $identify = null)
     {
         $response = $this->http->put($this->url . '/' . $identify, $params);
+
+        return response()->json(json_decode($response->body()), $response->status());
+    }
+
+    public function updateCellConfirmed(array $params = [], string $identify = null)
+    {
+        $response = $this->http->put($this->url . '/cell-confirmed/' . $identify, $params);
 
         return response()->json(json_decode($response->body()), $response->status());
     }
