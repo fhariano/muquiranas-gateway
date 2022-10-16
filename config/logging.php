@@ -119,6 +119,12 @@ return [
             'path' => storage_path('logs/authentication.log'),
             'days' => 30,
         ],
+
+        'muquiranas' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/muquiranas.log'),
+            'days' => 30,
+        ],
     ],
 
 ];

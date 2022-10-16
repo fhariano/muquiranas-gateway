@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -32,11 +33,13 @@ class ProductController extends Controller
 
     public function favoritesProducts(Request $request)
     {
+        Log::channel('muquiranas')->info("favoritesProducts - barId: " . $request->bar_id . " - UserId: ". $request->user_id);
         return $this->productService->getFavoritesProductsByBar($request->bar_id, $request->user_id);
     }
 
     public function toggleFavoriteProduct(Request $request)
     {
+        Log::channel('muquiranas')->info("toggleFavoriteProduct - barId: " . $request->bar_id . " - UserId: ". $request->user_id);
         return $this->productService->toggleFavoriteProduct($request->bar_id, $request->user_id, $request->all());
     }
 
