@@ -50,7 +50,7 @@ class ProductService
     public function toggleFavoriteProduct($bar_id, $user_id, array $params = [])
     {
         Log::channel('muquiranas')->info("SERVICE: toggleFavoriteProduct - barId: " . $bar_id . " - UserId: ". $user_id);
-        $response = $this->http->put(
+        $response = $this->http->post(
             $this->url . '/favorites/bar/' . $bar_id . '/user/' . $user_id,
             $params
         );
