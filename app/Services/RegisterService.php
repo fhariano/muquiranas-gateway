@@ -31,6 +31,6 @@ class RegisterService
         $params['apikey'] = $apikey;
         $response = $this->http->post($this->url. '/resendCode', $params);
 
-        return $this->defaultResponse->response($response);
+        return response()->json(json_decode($response->body()), $response->status());
     }
 }
