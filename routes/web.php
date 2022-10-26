@@ -7,6 +7,7 @@
  * Auth and Register
  */
 $router->post('/register', 'Api\Auth\RegisterController@register');
+$router->post('/resendCode', 'Api\Auth\RegisterController@resendCode');
 $router->post('/auth', 'Api\Auth\AuthController@auth');
 $router->post('/logout', 'Api\Auth\AuthController@logout');
 $router->get('/me', 'Api\Auth\AuthController@me');

@@ -18,8 +18,15 @@ class RegisterController extends Controller
 
     public function register(Request $request){
         $this->apikey = $request->header('apikey');
-        Log::channel('auth')->info("API-KEY: " . $this->apikey);
-        Log::channel('auth')->info("request: " . print_r($request->all(), true));
+        Log::channel('auth')->info("Register API-KEY: " . $this->apikey);
+        Log::channel('auth')->info("Register request: " . print_r($request->all(), true));
         return $this->registerService->register($request->all(), $this->apikey);
+    }
+    
+    public function resendCode(Request $request){
+        $this->apikey = $request->header('apikey');
+        Log::channel('auth')->info("Register API-KEY: " . $this->apikey);
+        Log::channel('auth')->info("ResendCode request: " . print_r($request->all(), true));
+        return $this->registerService->resendCode($request->all(), $this->apikey);
     }
 }

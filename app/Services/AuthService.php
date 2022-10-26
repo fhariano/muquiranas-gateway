@@ -18,8 +18,9 @@ class AuthService
         $this->http = Http::acceptJson();
     }
 
-    public function sign(array $params = [])
+    public function sign(array $params = [], $apikey = null)
     {
+        $params['apikey'] = $apikey;
         $response = $this->http->post($this->url . '/auth', $params);
 
         return response()->json(json_decode($response), $response->status());

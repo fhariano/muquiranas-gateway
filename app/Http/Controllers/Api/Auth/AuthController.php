@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Http\Controllers\Controller;
 use App\Services\AuthService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -17,7 +18,10 @@ class AuthController extends Controller
 
     public function auth(Request $request)
     {
-        return $this->authService->sign($request->all());
+        $this->apikey = $request->header('apikey');
+        Log::channel('auth')->info("Authenticate API-KEY: " . $this->apikey);
+        Log::channel('auth')->info("Authenticate E-mail: " . $request->email);
+        return $this->authService->sign($request->all(), $this->apikey);
     }
 
     public function me(Request $request)

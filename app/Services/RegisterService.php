@@ -14,14 +14,22 @@ class RegisterService
     public function __construct(DefaultResponse $defaultResponse)
     {
         $this->defaultResponse = $defaultResponse;
-        $this->url = config('microservices.available.micro_auth.url') . '/register';
-        $this->http = Http::acceptJson();
+        $this->url = config('microservices.available.micro_auth.url');
+        $this->http = Http::acceptJson()->timeout(120);
     }
 
     public function register(array $params = [], $apikey = null)
     {
         $params['apikey'] = $apikey;
-        $response = $this->http->post($this->url, $params);
+        $response = $this->http->post($this->url. '/register', $params);
+
+        return $this->defaultResponse->response($response);
+    }
+
+    public function resendCode(array $params = [], $apikey = null)
+    {
+        $params['apikey'] = $apikey;
+        $response = $this->http->post($this->url. '/resendCode', $params);
 
         return $this->defaultResponse->response($response);
     }
