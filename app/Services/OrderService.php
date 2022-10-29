@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Services;
+
+use App\Http\Utils\DefaultResponse;
+use Illuminate\Support\Facades\Http;
+
+class OrderService
+{
+    protected $defaultResponse;
+    protected $url;
+    protected $http;
+
+    public function __construct(DefaultResponse $defaultResponse)
+    {
+        $this->defaultResponse = $defaultResponse;
+        $this->url = config('microservices.available.micro_admin.url') . '/orders';
+        $this->http = Http::acceptJson();
+    }
+
+    public function getAllOrders($user_id, $bar_id)
+    {
+        $response = $this->http->get($this->url . '/user/' . $user_id . '/bar/' . $bar_id);
+
+        return $this->defaultResponse->response($response);
+    }
+
+    public function getOrderById(string $id = null)
+    {
+        $response = $this->http->get($this->url . '/' . $id);
+
+        return response()->json(json_decode($response->body()), $response->status());
+    }
+
+    public function newOrder(array $params = [])
+    {
+        $response = $this->http->post($this->url, $params);
+
+        return $this->defaultResponse->response($response);
+    }
+
+    public function updateOrderById(string $id = null, array $params = [])
+    {
+        $response = $this->http->put($this->url . '/' . $id, $params);
+
+        return response()->json(json_decode($response->body()), $response->status());
+    }
+
+    public function deleteOrderById(string $id = null)
+    {
+        $response = $this->http->delete($this->url . '/' . $id);
+
+        return response()->json(json_decode($response->body()), $response->status());
+    }
+}

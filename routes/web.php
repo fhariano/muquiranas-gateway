@@ -14,7 +14,7 @@ $router->get('/me', 'Api\Auth\AuthController@me');
 $router->put('/users/cell-confirmed/{identify}', 'Api\UserController@updateCellConfirmed');
 
 
-$router->group(['middleware' => 'auth_micro'], function () use ($router) {
+$router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
     /**
      * Resources
      */
@@ -103,6 +103,16 @@ $router->group(['middleware' => 'auth_micro'], function () use ($router) {
     ]);
     $router->put('/products/favorites/bar/{bar_id}/user/{user_id}', [
         'middleware' => 'permission:editar_favorito', 'uses' => 'Api\ProductController@toggleFavoriteProduct',
+    ]);
+    
+    /**
+     * Orders
+     */
+    $router->get('orders/user/{user_id}/bar/{bar_id}', [
+        'middleware' => 'permission:visualizar_ordens', 'uses' => 'Api\OrderController@index',
+    ]);
+     $router->post('orders', [
+        'middleware' => 'permission:editar_ordem', 'uses' => 'Api\OrderController@store',
     ]);
 
     /**
