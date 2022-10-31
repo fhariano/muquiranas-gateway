@@ -36,7 +36,8 @@ class OrderService
     {
         $response = $this->http->post($this->url, $params);
 
-        return $this->defaultResponse->response($response);
+        return response()->json(json_decode($response->body()), $response->status());
+        // return $this->defaultResponse->response($response);
     }
 
     public function updateOrderById(string $order_id = null, array $params = [])
