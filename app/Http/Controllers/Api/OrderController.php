@@ -27,6 +27,7 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
+        $this->apikey = $request->header('apikey');
         return $this->orderService->newOrder($request->all());
     }
 
