@@ -25,9 +25,9 @@ class OrderService
         return $this->defaultResponse->response($response);
     }
 
-    public function getOrderById(string $id = null)
+    public function getOrderById(string $order_id = null)
     {
-        $response = $this->http->get($this->url . '/' . $id);
+        $response = $this->http->get($this->url . '/' . $order_id);
 
         return response()->json(json_decode($response->body()), $response->status());
     }
@@ -39,16 +39,16 @@ class OrderService
         return $this->defaultResponse->response($response);
     }
 
-    public function updateOrderById(string $id = null, array $params = [])
+    public function updateOrderById(string $order_id = null, array $params = [])
     {
-        $response = $this->http->put($this->url . '/' . $id, $params);
+        $response = $this->http->put($this->url . '/' . $order_id, $params);
 
         return response()->json(json_decode($response->body()), $response->status());
     }
 
-    public function deleteOrderById(string $id = null)
+    public function deleteOrderById(string $order_id = null)
     {
-        $response = $this->http->delete($this->url . '/' . $id);
+        $response = $this->http->delete($this->url . '/' . $order_id);
 
         return response()->json(json_decode($response->body()), $response->status());
     }

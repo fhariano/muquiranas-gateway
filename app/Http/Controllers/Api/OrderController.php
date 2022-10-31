@@ -20,9 +20,9 @@ class OrderController extends Controller
         return $this->orderService->getAllOrders($user_id, $bar_id);
     }
 
-    public function show($id)
+    public function show($order_id)
     {
-        return $this->orderService->getOrderById($id);
+        return $this->orderService->getOrderById($order_id);
     }
 
     public function store(Request $request)
@@ -30,13 +30,13 @@ class OrderController extends Controller
         return $this->orderService->newOrder($request->all());
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $order_id)
     {
-        return $this->orderService->updateOrderById($id, $request->all());
+        return $this->orderService->updateOrderById($order_id, $request->all());
     }
 
-    public function destroy($id)
+    public function destroy($order_id)
     {
-        return $this->orderService->deleteOrderById($id);
+        return $this->orderService->deleteOrderById($order_id);
     }
 }
