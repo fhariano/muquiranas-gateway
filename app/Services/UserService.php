@@ -79,6 +79,13 @@ class UserService
         return response()->json(json_decode($response->body()), $response->status());
     }
 
+    public function updateUserAddress(array $params = [], string $identify = null)
+    {
+        $response = $this->http->put($this->url . '/address/' . $identify, $params);
+
+        return response()->json(json_decode($response->body()), $response->status());
+    }
+
     public function deleteUserByUUID(string $identify = null)
     {
         $response = $this->http->delete($this->url . '/' . $identify);

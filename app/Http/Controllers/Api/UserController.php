@@ -41,6 +41,11 @@ class UserController extends Controller
         return $this->userService->updateCellConfirmed($request->all(), $identify);
     }
 
+    public function updateAddress(Request $request, $identify)
+    {
+        return $this->userService->updateUserAddress($request->all(), $identify);
+    }
+
     public function destroy($identify)
     {
         return $this->userService->deleteUserByUUID($identify);

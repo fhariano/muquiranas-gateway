@@ -29,6 +29,7 @@ $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
     $router->get('/users', 'Api\UserController@index');
     $router->get('/users/{identify}', 'Api\UserController@show');
     $router->put('/users/{identify}', 'Api\UserController@update');
+    $router->put('/users/address/{identify}', 'Api\UserController@updateAddress');
     $router->delete('/users/{identify}', 'Api\UserController@destroy');
 
     /**
