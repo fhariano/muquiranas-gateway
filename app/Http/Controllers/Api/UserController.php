@@ -33,7 +33,6 @@ class UserController extends Controller
 
     public function update(Request $request, $identify)
     {
-        Log::channel('muquiranas')->info("User Update: " . print_r($request, true));
         return $this->userService->updateUserByUUID($request->all(), $identify);
     }
 

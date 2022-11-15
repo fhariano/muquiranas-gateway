@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Utils\DefaultResponse;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class UserService
 {
@@ -66,6 +67,7 @@ class UserService
     public function updateUserByUUID(array $params = [], string $identify = null)
     {
         $response = $this->http->put($this->url . '/' . $identify, $params);
+        Log::channel('muquiranas')->info("User Update: " . print_r($response, true));
 
         return response()->json(json_decode($response->body()), $response->status());
     }
