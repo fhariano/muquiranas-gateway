@@ -41,6 +41,11 @@ class UserController extends Controller
         return $this->userService->updateCellConfirmed($request->all(), $identify);
     }
 
+    public function getAddress($identify)
+    {
+        return $this->userService->getUserAddress($identify);
+    }
+
     public function updateAddress(Request $request, $identify)
     {
         return $this->userService->updateUserAddress($request->all(), $identify);

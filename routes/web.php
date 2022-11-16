@@ -12,7 +12,6 @@ $router->post('/auth', 'Api\Auth\AuthController@auth');
 $router->post('/logout', 'Api\Auth\AuthController@logout');
 $router->get('/me', 'Api\Auth\AuthController@me');
 $router->put('/users/cell-confirmed/{identify}', 'Api\UserController@updateCellConfirmed');
-$router->put('/users/address/{identify}', 'Api\UserController@updateAddress');
 
 
 $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
@@ -31,7 +30,9 @@ $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
     $router->get('/users/{identify}', 'Api\UserController@show');
     $router->put('/users/{identify}', 'Api\UserController@update');
     $router->delete('/users/{identify}', 'Api\UserController@destroy');
-
+    $router->get('/users/address/{identify}', 'Api\UserController@getAddress');
+    $router->put('/users/address/{identify}', 'Api\UserController@updateAddress');
+    
     /**
      * bars
      */
