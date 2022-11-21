@@ -20,6 +20,11 @@ class PaymentGetnetController extends Controller
         return $this->getnetService->getBrands();
     }
 
+    public function saveCard()
+    {
+        return $this->getnetService->saveCard();
+    }
+
     public function processPayment(Request $request)
     {
         return $this->getnetService->processPayment($request->all());
