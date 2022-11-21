@@ -124,7 +124,7 @@ $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
      * Payments GETNET
      */
     $router->post('/payments/getnet/card', [
-        'middleware' => 'permission:salvar_cartao2', 'uses' => 'Api\PaymentGetnetController@saveCard',
+        'middleware' => 'permission:salvar_cartao', 'uses' => 'Api\PaymentGetnetController@saveCard',
     ]);
      $router->post('/payments/getnet/process', [
         'middleware' => 'permission:processar_pagamento', 'uses' => 'Api\PaymentGetnetController@processPayment',
