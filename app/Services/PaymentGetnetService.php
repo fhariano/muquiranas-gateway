@@ -38,7 +38,7 @@ class PaymentGetnetService
 
     public function saveCard(array $params = [])
     {
-        $response = $this->http->post($this->url . '/getnet-cards', $params);
+        $response = $this->http->post($this->url . '/getnet-card', $params);
 
         return response()->json(json_decode($response), $response->status());
     }
