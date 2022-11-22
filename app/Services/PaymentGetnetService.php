@@ -42,4 +42,11 @@ class PaymentGetnetService
 
         return response()->json(json_decode($response), $response->status());
     }
+
+    public function getCardById(string $card_id = "")
+    {
+        $response = $this->http->get($this->url . '/getnet-card/', $card_id);
+
+        return response()->json(json_decode($response), $response->status());
+    }
 }
