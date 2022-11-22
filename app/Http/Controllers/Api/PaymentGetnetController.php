@@ -35,6 +35,12 @@ class PaymentGetnetController extends Controller
         return $this->getnetService->getCardByCustomerId($request->customer_id);
     }
 
+    public function removeCardById(Request $request)
+    {
+        return $this->getnetService->removeCardById($request->card_id);
+    }
+
+
     public function getBrands()
     {
         return $this->getnetService->getBrands();

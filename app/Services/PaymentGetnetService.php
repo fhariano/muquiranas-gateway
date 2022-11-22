@@ -56,4 +56,11 @@ class PaymentGetnetService
 
         return response()->json(json_decode($response), $response->status());
     }
+
+    public function removeCardById(string $card_id = "")
+    {
+        $response = $this->http->delete($this->url . '/getnet-card/' . $card_id);
+
+        return response()->json(json_decode($response), $response->status());
+    }
 }

@@ -135,6 +135,9 @@ $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
      $router->post('/payments/getnet/process', [
         'middleware' => 'permission:processar_pagamento', 'uses' => 'Api\PaymentGetnetController@processPayment',
     ]);
+    $router->delete('/payments/getnet/card/{card_id}', [
+        'middleware' => 'permission:recuperar_cartao', 'uses' => 'Api\PaymentGetnetController@removeCardById',
+    ]);
     $router->get('/payments/getnet/brands', [
         'middleware' => 'permission:listar_bandeiras', 'uses' => 'Api\PaymentGetnetController@getBrands',
     ]);
