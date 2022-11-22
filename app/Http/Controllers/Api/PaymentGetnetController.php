@@ -30,6 +30,11 @@ class PaymentGetnetController extends Controller
         return $this->getnetService->getCardById($request->card_id);
     }
 
+    public function getCardByCustomerId(Request $request)
+    {
+        return $this->getnetService->getCardByCustomerId($request->customer_id);
+    }
+
     public function getBrands()
     {
         return $this->getnetService->getBrands();

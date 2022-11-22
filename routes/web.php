@@ -126,6 +126,9 @@ $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
     $router->get('/payments/getnet/card/{card_id}', [
         'middleware' => 'permission:recuperar_cartao', 'uses' => 'Api\PaymentGetnetController@getCardById',
     ]);
+    $router->get('/payments/getnet/card/customer/{customer_id}', [
+        'middleware' => 'permission:recuperar_cartao', 'uses' => 'Api\PaymentGetnetController@getCardByCustomerId',
+    ]);
      $router->post('/payments/getnet/card', [
         'middleware' => 'permission:salvar_cartao', 'uses' => 'Api\PaymentGetnetController@saveCard',
     ]);

@@ -49,4 +49,11 @@ class PaymentGetnetService
 
         return response()->json(json_decode($response), $response->status());
     }
+
+    public function getCardByCustomerId(string $customer_id = "")
+    {
+        $response = $this->http->get($this->url . '/getnet-card/customer/' . $customer_id);
+
+        return response()->json(json_decode($response), $response->status());
+    }
 }
