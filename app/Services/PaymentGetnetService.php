@@ -29,6 +29,11 @@ class PaymentGetnetService
         return response()->json(json_decode($response), $response->status());
     }
 
+    public function getCallback(array $params = [])
+    {   
+        return response()->json(["message" => "GETNET CALLBACK - Success"], 200);
+    }
+
     public function processPayment(array $params = [])
     {
         $response = $this->http->post($this->url . '/getnet-process-payment', $params);

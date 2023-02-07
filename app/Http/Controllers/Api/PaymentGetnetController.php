@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Services\PaymentGetnetService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PaymentGetnetController extends Controller
 {
@@ -44,5 +45,11 @@ class PaymentGetnetController extends Controller
     public function getBrands()
     {
         return $this->getnetService->getBrands();
+    }
+
+    public function getCallback(Request $request)
+    {
+        Log::channel('muquiranas')->info("callback return: " . print_r($request, true));
+        return $this->getnetService->getCallback();
     }
 }

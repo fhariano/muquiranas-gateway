@@ -146,11 +146,7 @@ $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
 /**
  * GETNET - URL de CALLBACK cadastrada
  */
-$router->get('/payments/getnet/callback', function () use ($router) {
-    return response()->json(['message' => 'GETNET CALLBACK - Success']);
-});
-
-
+$router->get('/payments/getnet/callback', 'Api\PaymentGetnetController@getCallback');
 
 $router->get('/', function () use ($router) {
     // return $router->app->version();
