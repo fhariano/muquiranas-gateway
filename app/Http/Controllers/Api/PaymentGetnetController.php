@@ -49,7 +49,7 @@ class PaymentGetnetController extends Controller
 
     public function getCallback(Request $request)
     {
-        Log::channel('muquiranas')->info("callback return: " . print_r($request, true));
+        Log::channel('muquiranas')->info("callback return: " . print_r($request->all(), true));
         return $this->getnetService->getCallback();
     }
 }
