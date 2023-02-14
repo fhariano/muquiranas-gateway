@@ -16,6 +16,11 @@ class PaymentGetnetController extends Controller
         $this->getnetService = $getnetService;
     }
 
+    public function processPix(Request $request)
+    {
+        return $this->getnetService->processPix($request->all());
+    }
+
     public function processPayment(Request $request)
     {
         return $this->getnetService->processPayment($request->all());
@@ -45,6 +50,11 @@ class PaymentGetnetController extends Controller
     public function getBrands()
     {
         return $this->getnetService->getBrands();
+    }
+
+    public function getOthers()
+    {
+        return $this->getnetService->getOthers();
     }
 
     public function getCallback(Request $request)

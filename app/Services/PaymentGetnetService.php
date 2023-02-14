@@ -18,6 +18,11 @@ class PaymentGetnetService
         $this->http = Http::acceptJson();
     }
 
+    public function getCallback(array $params = [])
+    {   
+        return response()->json(["message" => "GETNET CALLBACK - Success"], 200);
+    }
+
     public function getBrands()
     {
         $response = $this->http
@@ -29,9 +34,18 @@ class PaymentGetnetService
         return response()->json(json_decode($response), $response->status());
     }
 
-    public function getCallback(array $params = [])
-    {   
-        return response()->json(["message" => "GETNET CALLBACK - Success"], 200);
+    public function getOthers()
+    {
+        $response = $this->http->get($this->url . '/getnet-others');
+
+        return response()->json(json_decode($response), $response->status());
+    }
+
+    public function processPix(array $params = [])
+    {
+        $response = $this->http->post($this->url . '/getnet-process-pix', $params);
+
+        return response()->json(json_decode($response), $response->status());
     }
 
     public function processPayment(array $params = [])

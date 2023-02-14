@@ -32,7 +32,7 @@ $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
     $router->delete('/users/{identify}', 'Api\UserController@destroy');
     $router->get('/users/address/{identify}', 'Api\UserController@getAddress');
     $router->put('/users/address/{identify}', 'Api\UserController@updateAddress');
-    
+
     /**
      * bars
      */
@@ -106,7 +106,7 @@ $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
     $router->put('/products/favorites/bar/{bar_id}/user/{user_id}', [
         'middleware' => 'permission:editar_favorito', 'uses' => 'Api\ProductController@toggleFavoriteProduct',
     ]);
-    
+
     /**
      * Orders
      */
@@ -116,7 +116,7 @@ $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
     $router->get('orders/user/{user_id}/bar/{bar_id}', [
         'middleware' => 'permission:visualizar_ordens', 'uses' => 'Api\OrderController@index',
     ]);
-     $router->post('orders', [
+    $router->post('orders', [
         'middleware' => 'permission:editar_ordem', 'uses' => 'Api\OrderController@store',
     ]);
 
@@ -129,14 +129,20 @@ $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
     $router->get('/payments/getnet/card/customer/{customer_id}', [
         'middleware' => 'permission:recuperar_cartao', 'uses' => 'Api\PaymentGetnetController@getCardByCustomerId',
     ]);
-     $router->post('/payments/getnet/card', [
+    $router->post('/payments/getnet/card', [
         'middleware' => 'permission:salvar_cartao', 'uses' => 'Api\PaymentGetnetController@saveCard',
     ]);
-     $router->post('/payments/getnet/process', [
+    $router->post('/payments/getnet/process-payment', [
         'middleware' => 'permission:processar_pagamento', 'uses' => 'Api\PaymentGetnetController@processPayment',
+    ]);
+    $router->post('/payments/getnet/process-pix', [
+        'middleware' => 'permission:processar_pagamento', 'uses' => 'Api\PaymentGetnetController@processPix',
     ]);
     $router->delete('/payments/getnet/card/{card_id}', [
         'middleware' => 'permission:recuperar_cartao', 'uses' => 'Api\PaymentGetnetController@removeCardById',
+    ]);
+    $router->get('/payments/getnet/others', [
+        'middleware' => 'permission:recuperar_cartao', 'uses' => 'Api\PaymentGetnetController@getOthers',
     ]);
     $router->get('/payments/getnet/brands', [
         'middleware' => 'permission:listar_bandeiras', 'uses' => 'Api\PaymentGetnetController@getBrands',
