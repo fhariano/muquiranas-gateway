@@ -14,7 +14,7 @@ class PaymentOtherService
     public function __construct(DefaultResponse $defaultResponse)
     {
         $this->defaultResponse = $defaultResponse;
-        $this->url = config('microservices.available.micro_payment.url') . '/others';
+        $this->url = config('microservices.available.micro_payment.url') . '/list-others';
         $this->http = Http::acceptJson();
     }
 
