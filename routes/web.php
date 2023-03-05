@@ -123,7 +123,7 @@ $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
     /**
      * Payments
      */
-    $router->post('/payments/others', [
+    $router->get('/payments/others', [
         'middleware' => 'permission:processar_pagamento', 'uses' => 'Api\PaymentOtherController@index',
     ]);
     $router->get('/payments/getnet/card/{card_id}', [
