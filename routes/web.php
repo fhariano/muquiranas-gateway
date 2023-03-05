@@ -121,8 +121,11 @@ $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
     ]);
 
     /**
-     * Payments GETNET
+     * Payments
      */
+    $router->post('/payments/others', [
+        'middleware' => 'permission:processar_pagamento', 'uses' => 'Api\PaymentOtherController@index',
+    ]);
     $router->get('/payments/getnet/card/{card_id}', [
         'middleware' => 'permission:recuperar_cartao', 'uses' => 'Api\PaymentGetnetController@getCardById',
     ]);

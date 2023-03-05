@@ -14,7 +14,7 @@ class PaymentGetnetService
     public function __construct(DefaultResponse $defaultResponse)
     {
         $this->defaultResponse = $defaultResponse;
-        $this->url = config('microservices.available.micro_payment_getnet.url');
+        $this->url = config('microservices.available.micro_payment.url');
         $this->http = Http::acceptJson();
     }
 
