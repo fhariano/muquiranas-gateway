@@ -2,18 +2,15 @@
 
 namespace App\Services;
 
-use App\Http\Utils\DefaultResponse;
 use Illuminate\Support\Facades\Http;
 
 class PaymentOtherService
 {
-    protected $defaultResponse;
     protected $url;
     protected $http;
 
-    public function __construct(DefaultResponse $defaultResponse)
+    public function __construct()
     {
-        $this->defaultResponse = $defaultResponse;
         $this->url = config('microservices.available.micro_payment.url') . '/list-others';
         $this->http = Http::acceptJson();
     }
@@ -22,6 +19,6 @@ class PaymentOtherService
     {
         $response = $this->http->get($this->url, $params);
 
-        return $this->defaultResponse->response($response);
+        return response()->json(json_decode($response), $response->status());
     }
 }
