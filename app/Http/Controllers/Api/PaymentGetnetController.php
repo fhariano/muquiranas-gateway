@@ -38,13 +38,13 @@ class PaymentGetnetController extends Controller
     
     public function getCardByCustomerId(Request $request)
     {
-        Log::channel('muquiranas')->info("getCardByCustomerId: " . print_r($request->all(), true));
+        Log::channel('muquiranas')->info("getCardByCustomerId: " . $request->customer_id);
         return $this->getnetService->getCardByCustomerId($request->customer_id);
     }
 
     public function removeCardById(Request $request)
     {
-        Log::channel('muquiranas')->info("removeCardById: " . print_r($request->all(), true));
+        Log::channel('muquiranas')->info("removeCardById: " . $request->card_id);
         return $this->getnetService->removeCardById($request->card_id);
     }
 

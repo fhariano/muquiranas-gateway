@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Utils\DefaultResponse;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class PaymentGetnetService
 {
@@ -79,6 +80,8 @@ class PaymentGetnetService
     public function removeCardById(string $card_id = "")
     {
         $response = $this->http->delete($this->url . '/getnet-card/' . $card_id);
+
+        Log::channel('muquiranas')->info("removeCardById response: " . print_r($response, true));
 
         return response()->json(json_decode($response), $response->status());
     }
