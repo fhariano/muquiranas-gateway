@@ -81,7 +81,7 @@ class PaymentGetnetService
     {
         $response = $this->http->delete($this->url . '/getnet-card/' . $card_id);
 
-        Log::channel('muquiranas')->info("removeCardById response: " . print_r($response, true));
+        Log::channel('muquiranas')->info("removeCardById response: " . print_r(json_decode($response), true));
 
         return response()->json(json_decode($response), $response->status());
     }
