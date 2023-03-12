@@ -16,7 +16,10 @@ class ProductService
     {
         $this->defaultResponse = $defaultResponse;
         $this->url = config('microservices.available.micro_admin.url') . '/products';
-        $this->http = Http::acceptJson();
+        $this->http = Http::acceptJson()
+            ->withHeaders([
+                'Authorization' => request()->header('Authorization')
+            ]);
     }
 
     public function getAllProducts(array $params = [])
@@ -49,7 +52,7 @@ class ProductService
 
     public function toggleFavoriteProduct($bar_id, $user_id, array $params = [])
     {
-        Log::channel('muquiranas')->info("SERVICE: toggleFavoriteProduct - barId: " . $bar_id . " - UserId: ". $user_id);
+        Log::channel('muquiranas')->info("SERVICE: toggleFavoriteProduct - barId: " . $bar_id . " - UserId: " . $user_id);
         $response = $this->http->put(
             $this->url . '/favorites/bar/' . $bar_id . '/user/' . $user_id,
             $params

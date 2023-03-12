@@ -15,7 +15,10 @@ class BarService
     {
         $this->defaultResponse = $defaultResponse;
         $this->url = config('microservices.available.micro_admin.url') . '/bars';
-        $this->http = Http::acceptJson();
+        $this->http = Http::acceptJson()
+            ->withHeaders([
+                'Authorization' => request()->header('Authorization')
+            ]);
     }
 
     public function getAllBares(array $params = [])

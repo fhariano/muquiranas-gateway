@@ -15,7 +15,10 @@ class OrderService
     {
         $this->defaultResponse = $defaultResponse;
         $this->url = config('microservices.available.micro_admin.url') . '/orders';
-        $this->http = Http::acceptJson();
+        $this->http = Http::acceptJson()
+            ->withHeaders([
+                'Authorization' => request()->header('Authorization')
+            ]);
     }
 
     public function getAllOrders($user_id, $bar_id)

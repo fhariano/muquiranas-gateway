@@ -15,7 +15,10 @@ class CategoryService
     {
         $this->defaultResponse = $defaultResponse;
         $this->url = config('microservices.available.micro_admin.url') . '/categories';
-        $this->http = Http::acceptJson();
+        $this->http = Http::acceptJson()
+            ->withHeaders([
+                'Authorization' => request()->header('Authorization')
+            ]);
     }
 
     public function getAllCategories(array $params = [])
