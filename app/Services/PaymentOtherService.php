@@ -12,7 +12,10 @@ class PaymentOtherService
     public function __construct()
     {
         $this->url = config('microservices.available.micro_payment.url') . '/list-others';
-        $this->http = Http::acceptJson();
+        $this->http = Http::acceptJson()
+            ->withHeaders([
+                'Authorization' => request()->header('Authorization')
+            ]);
     }
 
     public function getAllOthers(array $params = [])

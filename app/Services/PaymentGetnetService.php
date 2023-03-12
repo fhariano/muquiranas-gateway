@@ -16,20 +16,20 @@ class PaymentGetnetService
     {
         $this->defaultResponse = $defaultResponse;
         $this->url = config('microservices.available.micro_payment.url');
-        $this->http = Http::acceptJson();
+        $this->http = Http::acceptJson()
+            ->withHeaders([
+                'Authorization' => request()->header('Authorization')
+            ]);
     }
 
     public function getCallback(array $params = [])
-    {   
+    {
         return response()->json(["message" => "GETNET CALLBACK - Success"], 200);
     }
 
     public function getBrands()
     {
         $response = $this->http
-            ->withHeaders([
-                'Authorization' => request()->header('Authorization')
-            ])
             ->get($this->url . '/getnet-list-brands');
 
         return response()->json(json_decode($response), $response->status());
