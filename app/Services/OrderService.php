@@ -18,7 +18,8 @@ class OrderService
         $this->http = Http::acceptJson()
             ->withHeaders([
                 'Authorization' => request()->header('Authorization'),
-                'Identify' => request()->header('Identify')
+                'Identify' => request()->header('Identify'),
+                'apikey' => request()->header('apikey'),
             ]);
     }
 
