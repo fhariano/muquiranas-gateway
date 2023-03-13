@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Http\Utils\DefaultResponse;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+
 
 class OrderService
 {
@@ -39,7 +41,9 @@ class OrderService
 
     public function newOrder(array $params = [])
     {
+        Log::channel('muquiranas')->info("newOrder params: " . print_r($params, true));
         $response = $this->http->post($this->url, $params);
+        Log::channel('muquiranas')->info("newOrder response: " . print_r(json_decode($response), true));
 
         return response()->json(json_decode($response->body()), $response->status());
         // return $this->defaultResponse->response($response);
