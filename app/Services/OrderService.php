@@ -17,7 +17,8 @@ class OrderService
         $this->url = config('microservices.available.micro_admin.url') . '/orders';
         $this->http = Http::acceptJson()
             ->withHeaders([
-                'Authorization' => request()->header('Authorization')
+                'Authorization' => request()->header('Authorization'),
+                'Identify' => request()->header('Identify')
             ]);
     }
 
