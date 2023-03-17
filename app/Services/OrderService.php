@@ -25,9 +25,9 @@ class OrderService
             ]);
     }
 
-    public function getAllOrders($identify, $bar_id)
+    public function getAllOrders($user_id, $bar_id)
     {
-        $response = $this->http->get($this->url . '/user/' . $identify . '/bar/' . $bar_id);
+        $response = $this->http->get($this->url . '/user/' . $user_id . '/bar/' . $bar_id);
 
         return $this->defaultResponse->response($response);
     }

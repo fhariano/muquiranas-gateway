@@ -113,7 +113,7 @@ $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
     $router->get('orders/{order_id}', [
         'middleware' => 'permission:visualizar_ordem', 'uses' => 'Api\OrderController@show',
     ]);
-    $router->get('orders/user/{identify}/bar/{bar_id}', [
+    $router->get('orders/user/{user_id}/bar/{bar_id}', [
         'middleware' => 'permission:visualizar_ordens', 'uses' => 'Api\OrderController@index',
     ]);
     $router->post('orders', [
