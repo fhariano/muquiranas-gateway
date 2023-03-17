@@ -113,7 +113,7 @@ $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
     $router->get('orders/{order_id}', [
         'middleware' => 'permission:visualizar_ordem', 'uses' => 'Api\OrderController@show',
     ]);
-    $router->get('orders/user/{user_id}/bar/{bar_id}', [
+    $router->get('orders/user/{identify}/bar/{bar_id}', [
         'middleware' => 'permission:visualizar_ordens', 'uses' => 'Api\OrderController@index',
     ]);
     $router->post('orders', [
@@ -135,12 +135,12 @@ $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
     $router->post('/payments/getnet/card', [
         'middleware' => 'permission:salvar_cartao', 'uses' => 'Api\PaymentGetnetController@saveCard',
     ]);
-    $router->post('/payments/getnet/process-payment', [
-        'middleware' => 'permission:processar_pagamento', 'uses' => 'Api\PaymentGetnetController@processPayment',
-    ]);
-    $router->post('/payments/getnet/process-pix', [
-        'middleware' => 'permission:processar_pagamento', 'uses' => 'Api\PaymentGetnetController@processPix',
-    ]);
+    // $router->post('/payments/getnet/process-payment', [
+    //     'middleware' => 'permission:processar_pagamento', 'uses' => 'Api\PaymentGetnetController@processPayment',
+    // ]);
+    // $router->post('/payments/getnet/process-pix', [
+    //     'middleware' => 'permission:processar_pagamento', 'uses' => 'Api\PaymentGetnetController@processPix',
+    // ]);
     $router->delete('/payments/getnet/card/{card_id}', [
         'middleware' => 'permission:recuperar_cartao', 'uses' => 'Api\PaymentGetnetController@removeCardById',
     ]);
