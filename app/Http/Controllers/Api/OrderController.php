@@ -15,9 +15,9 @@ class OrderController extends Controller
         $this->orderService = $orderService;
     }
 
-    public function index($identify, $bar_id)
+    public function index($user_id, $bar_id)
     {
-        return $this->orderService->getAllOrders($identify, $bar_id);
+        return $this->orderService->getAllOrders($user_id, $bar_id);
     }
 
     public function show($order_id)
