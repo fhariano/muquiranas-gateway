@@ -42,7 +42,7 @@ class OrderService
     public function newOrder(array $params = [])
     {
         Log::channel('muquiranas')->info("newOrder apikey: " . request()->header('apikey'));
-        $response = $this->http->post($this->url, $params);
+        $response = $this->http->timeout(180)->post($this->url, $params);
         Log::channel('muquiranas')->info("newOrder response: " . print_r(json_decode($response), true));
 
         return response()->json(json_decode($response->body()), $response->status());
