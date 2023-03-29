@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 class AuthController extends Controller
 {
     protected $authService;
+    protected $apikey;
 
     public function __construct(AuthService $authService)
     {
