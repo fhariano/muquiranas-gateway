@@ -85,7 +85,6 @@ $app->configure('microservices');
 $app->routeMiddleware([
     'chk_user_auth' => App\Http\Middleware\CheckUserAuth::class,
     'permission' => App\Http\Middleware\EnsureUserHasPermission::class,
-    'handle_cors' => App\Http\Middleware\Cors::class,
 ]);
 
 // $app->routeMiddleware([
