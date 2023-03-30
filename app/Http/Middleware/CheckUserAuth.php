@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class CheckUserAuth
 {
@@ -17,6 +18,7 @@ class CheckUserAuth
      */
     public function handle(Request $request, Closure $next)
     {
+        Log::channel('muquiranas')->info('ME headers: ' . print_r($request->headers(), true));
         $response = Http::acceptJson()
             ->withHeaders([
                 'Authorization' => $request->header('Authorization')
