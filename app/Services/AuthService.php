@@ -24,13 +24,14 @@ class AuthService
         $params['apikey'] = $apikey;
         $response = $this->http->post($this->url . '/auth', $params);
 
-        Log::channel('auth')->info('response: '. print_r($response, true));
+        Log::channel('auth')->info('response: ' . print_r($response, true));
 
         return response()->json(json_decode($response), $response->status());
     }
 
     public function getMe(array $headers)
     {
+        Log::channel('auth')->info('ME headers: ' . print_r($this->http->withHeaders($headers), true));
         $response = $this->http
             ->withHeaders($headers)
             ->get($this->url . '/me');
