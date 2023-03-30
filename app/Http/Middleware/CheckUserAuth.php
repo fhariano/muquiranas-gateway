@@ -18,7 +18,7 @@ class CheckUserAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        Log::channel('muquiranas')->info('ME headers: ' . print_r($request->headers(), true));
+        Log::channel('muquiranas')->info('ME headers: ' . print_r($request->headers, true));
         $response = Http::acceptJson()
             ->withHeaders([
                 'Authorization' => $request->header('Authorization')
