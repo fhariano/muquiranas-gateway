@@ -85,7 +85,6 @@ $app->configure('microservices');
 $app->routeMiddleware([
     'chk_user_auth' => App\Http\Middleware\CheckUserAuth::class,
     'permission' => App\Http\Middleware\EnsureUserHasPermission::class,
-    'handle_cors' => Fruitcake\Cors\HandleCors::class,
 ]);
 
 // $app->routeMiddleware([
@@ -106,11 +105,11 @@ $app->routeMiddleware([
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
-$app->register(Fruitcake\Cors\CorsServiceProvider::class);
+$app->register(Illuminate\Http\Middleware\HandleCors::class);
 $app->configure('cors');
 
 $app->middleware([
-    Fruitcake\Cors\HandleCors::class,
+    Illuminate\Http\Middleware\HandleCors::class,
 ]);
 
 /*
