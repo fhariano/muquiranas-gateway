@@ -81,6 +81,10 @@ $app->configure('microservices');
 //     App\Http\Middleware\EnsureUserHasPermission::class
 // ]);
 
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class
+ ]);
+
 // chk_user_auth: Autenticação no Micro Auth
 $app->routeMiddleware([
     'chk_user_auth' => App\Http\Middleware\CheckUserAuth::class,
