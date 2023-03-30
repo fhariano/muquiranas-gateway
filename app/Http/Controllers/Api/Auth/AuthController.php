@@ -24,9 +24,11 @@ class AuthController extends Controller
         Log::channel('auth')->info("Authenticate E-mail: " . $request->email);
         return $this->authService->sign($request->all(), $this->apikey);
     }
-
+    
     public function me(Request $request)
     {
+        $this->apikey = $request->header('apikey');
+        Log::channel('auth')->info("ME: " . $this->apikey);
         return $this->authService->getMe([
             'Authorization' => $request->header('Authorization')
         ]);
