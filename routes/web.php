@@ -12,7 +12,9 @@ $router->post('/auth', 'Api\Auth\AuthController@auth');
 $router->post('/logout', 'Api\Auth\AuthController@logout');
 $router->get('/me', 'Api\Auth\AuthController@me');
 $router->put('/users/cell-confirmed/{identify}', 'Api\UserController@updateCellConfirmed');
-
+$router->get('/bars/{id}', [
+    'middleware' => 'permission:visualizar_bar', 'uses' => 'Api\BarController@show',
+]);
 
 $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
     /**
@@ -39,9 +41,6 @@ $router->group(['middleware' => 'chk_user_auth'], function () use ($router) {
     $router->post('/bars/{id}/evaluations', 'Api\EvaluationController@store');
     $router->get('/bars', [
         'middleware' => 'permission:visualizar_bares', 'uses' => 'Api\BarController@index',
-    ]);
-    $router->get('/bars/{id}', [
-        'middleware' => 'permission:visualizar_bar', 'uses' => 'Api\BarController@show',
     ]);
     $router->post('/bars', [
         'middleware' => 'permission:editar_bar', 'uses' => 'Api\BarController@store',
