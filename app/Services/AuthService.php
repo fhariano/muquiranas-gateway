@@ -31,11 +31,12 @@ class AuthService
 
     public function getMe(array $headers)
     {
-        Log::channel('auth')->info('ME headers: ' . print_r($this->http->withHeaders($headers), true));
+        // Log::channel('auth')->info('ME headers: ' . print_r($this->http->withHeaders($headers), true));
         $response = $this->http
-            ->withHeaders($headers)
-            ->get($this->url . '/me');
-
+        ->withHeaders($headers)
+        ->get($this->url . '/me');
+        
+        Log::channel('auth')->info('ME response: ' . print_r(json_decode($response), true));
         return response()->json(json_decode($response), $response->status());
     }
 
