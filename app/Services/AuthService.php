@@ -36,7 +36,7 @@ class AuthService
         ->withHeaders($headers)
         ->get($this->url . '/me');
         
-        Log::channel('auth')->info('ME response: ' . print_r(json_decode($response), true));
+        Log::channel('auth')->info('ME response: ' . print_r($response, true));
         return response()->json(json_decode($response), $response->status());
     }
 
